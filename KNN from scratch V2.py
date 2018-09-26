@@ -15,7 +15,8 @@ def KNearestN(data, predict, k = 3):
             
     votes = [i[1] for i in sorted(distances) [:k]]
     vote_result = Counter(votes).most_common(1)[0][0]
-    return vote_result
+    confidence = Counter(votes).most_common(1)[0][1] / k
+    return vote_result, confidence
 
 
 df = pd.read_csv('breast-cancer-wisconsin.data')
@@ -48,9 +49,11 @@ total = 0
 
 for group in test_set:
     for data in test_set[group]:
-        vote = KNearestN(train_set , data , k = 5)
+        vote,confidence = KNearestN(train_set , data , k = 7)
         if group == vote:
             correct = correct + 1
+        else:
+            print(confidence)
         total = total + 1
 
 
