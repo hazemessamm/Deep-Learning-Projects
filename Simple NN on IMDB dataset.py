@@ -52,7 +52,7 @@ model_evaluation = model.evaluate(x_test,y_test)
 print(model_evaluation) #model_evaluation[0] is loss and model_evaluation[1] is accuracy
 
 
-#Model Visualization
+#Accuracy and Loss Visualization
 import matplotlib.pyplot as plt
 
 acc = history.history['acc']
